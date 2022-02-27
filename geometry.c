@@ -1,25 +1,71 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define SIZE 100
 
-int inOutPut()                          //функция ввода и вывода данных
+int fileCheck()
 {
-    FILE *fp;
-    char name[] = "input.txt";
-    if ((fp = fopen(name, "r")) == NULL) //проверка на существование файла
+    int lines = 0;
+    
+    FILE* file = fopen("input.txt", "r");
+    if(file == NULL) //проверка на существование файла
     {
-        printf("Не удалось открыть файл!\n");
-        //getchar();
+        printf("Input file does not exist!\n");
         return 0;
     }
-    while(fgets != '(')            //требуемые действия над данными
 
-    fclose(fp);
-    //getchar();
+    while(!feof(file))
+    {
+        if(fgetc(file) == '\n')
+        {
+            lines++;
+        }
+    }
+    fclose(file);
+    return lines;
+}
+
+int iscorrect()
+{
+    int correct;
+
+    FILE* file = fopen("input.txt", "r");
+    if(file == NULL)
+    {
+        correct = 1;
+    }
+    else
+    {
+        correct = 0;
+    }
+    
+    if(correct == 0)
+    {
+        printf("Data is correct!\n");        
+    }
+    else
+    {
+        printf("Data is wrong!\n");
+    }
+    
     return 0;
 }
 
 int main()
-{   
-    inOutPut();
+{
+    char str[SIZE];
+    int lines = fileCheck();
+
+    FILE* file = fopen("input.txt", "r");
+    for(int line = 0; line < lines; line++)
+    {
+        fgets(str, SIZE, file);
+        str[strlen(str) - 1] = '\0';
+        
+    }
+    iscorrect();
+
+    fclose(file);
 
     return 0;
 }
