@@ -5,15 +5,15 @@
 
 int fileCheck()
 {
-    int lines = 0;
     FILE* file = fopen("input.txt", "r");
-    if(file == NULL) //проверка на существование файла
+    if(file == NULL) // checking for the existence of a file
     {
         printf("Input file does not exist!\n");
         return 0;
     }
 
-    while(!feof(file)) //подсчёт кол-ва строк
+    int lines = 0;
+    while(!feof(file)) // counting rows
     {
         if(fgetc(file) == '\n')
         {
@@ -56,19 +56,19 @@ int isCorrect()
 
 int main()
 {
-    char str[SIZE];
-    int lines = fileCheck();
+    // char str[SIZE];
+    // int lines = fileCheck();
 
-    FILE* file = fopen("input.txt", "r");
-    for(int line = 0; line < lines; line++)
-    {
-        fgets(str, SIZE, file);
-        str[strlen(str) - 1] = '\0';
+    // FILE* file = fopen("input.txt", "r");
+    // for(int line = 0; line < lines; line++)
+    // {
+    //     fgets(str, SIZE, file);
+    //     str[strlen(str) - 1] = '\0';
         
-    }
+    // }
+    //fclose(file);
+    
     isCorrect();
-
-    fclose(file);
 
     return 0;
 }
