@@ -6,7 +6,6 @@
 int fileCheck()
 {
     int lines = 0;
-    
     FILE* file = fopen("input.txt", "r");
     if(file == NULL) //проверка на существование файла
     {
@@ -25,27 +24,31 @@ int fileCheck()
     return lines;
 }
 
-int iscorrect()
+int isCorrect()
 {
-    int correct;
+    char circleStr[] = "circle";
+    char triangleStr[] = "triangle";
+    // char polygonStr[] = "polygon"; // it's so hard
 
     FILE* file = fopen("input.txt", "r");
-    if(file == NULL)
+    char *figure;
+    char str[SIZE];
+    fgets(str, SIZE, file);
+
+    figure = strtok(str, "(");
+    if(strcmp(figure, circleStr) == 0)
+    {   
+        printf("Figure - ");
+        puts(figure);
+    }
+    else if(strcmp(figure, triangleStr) == 0)
     {
-        correct = 1;
+        printf("Figure - ");
+        puts(figure);
     }
     else
     {
-        correct = 0;
-    }
-    
-    if(correct == 0)
-    {
-        printf("Data is correct!\n");        
-    }
-    else
-    {
-        printf("Data is wrong!\n");
+        printf("Figure undefined\nExpected: 'circle' or 'triangle'\n");
     }
     
     return 0;
@@ -63,10 +66,9 @@ int main()
         str[strlen(str) - 1] = '\0';
         
     }
-    iscorrect();
+    isCorrect();
 
     fclose(file);
 
     return 0;
 }
-//if(c[0] == 'c' || c[0] == 'C', c[1] == 'i')
