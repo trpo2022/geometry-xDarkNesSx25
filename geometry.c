@@ -14,7 +14,7 @@ int fileCheck()
         return 0;
     }
 
-    while(!feof(file))
+    while(!feof(file)) //подсчёт кол-ва строк
     {
         if(fgetc(file) == '\n')
         {
@@ -69,3 +69,4 @@ int main()
 
     return 0;
 }
+//if(c[0] == 'c' || c[0] == 'C', c[1] == 'i')
